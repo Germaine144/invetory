@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - IMS</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="navbar">
+        <div class="nav-content">
+            <h2>Admin Dashboard</h2>
+            <div class="nav-right">
+                <span id="welcomeUser"></span>
+                <button id="themeToggle" class="btn-secondary">🌙 Dark Mode</button>
+                <button id="logoutBtn" class="btn-danger">Logout</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="admin-tabs">
+            <button class="tab-btn active" data-tab="users">Manage Users</button>
+            <button class="tab-btn" data-tab="inventory">All Inventory</button>
+            <button class="tab-btn" data-tab="adduser">Add New User</button>
+        </div>
+
+        <!-- Manage Users Tab -->
+        <div id="usersTab" class="tab-content active">
+            <h2>Registered Users</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Username</th>
+                            <th>Full Names</th>
+                            <th>Phone</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="usersTableBody">
+                        <!-- Users will be displayed here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- All Inventory Tab -->
+        <div id="inventoryTab" class="tab-content">
+            <h2>All Inventory Items</h2>
+            
+            <!-- Filters -->
+            <div class="controls">
+                <input type="text" id="searchBar" placeholder="Search by item name...">
+                <select id="filterUser">
+                    <option value="">All Users</option>
+                </select>
+                <select id="filterStatus">
+                    <option value="">All Status</option>
+                    <option value="Available">Available</option>
+                    <option value="Out of Stock">Out of Stock</option>
+                    <option value="Pending">Pending</option>
+                </select>
+            </div>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Username</th>
+                            <th>Item Name</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="allInventoryTableBody">
+                        <!-- All items will be displayed here -->
+                    </tbody>
+                </table>
+                <div id="noItems" class="no-items" style="display:none;">No items found</div>
+            </div>
+        </div>
+
+        <!-- Add New User Tab -->
+        <div id="adduserTab" class="tab-content">
+            <h2>Add New User</h2>
+            <div class="form-box">
+                <form id="addUserForm">
+                    <div class="form-group">
+                        <label for="newUsername">Username</label>
+                        <input type="text" id="newUsername" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="newNames">Full Names</label>
+                        <input type="text" id="newNames" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="newPhone">Phone Number</label>
+                        <input type="tel" id="newPhone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="newPassword">Password</label>
+                        <input type="password" id="newPassword" required>
+                    </div>
+                    <button type="submit" class="btn">Add User</button>
+                </form>
+                <div id="addUserMessage" class="message"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit User Modal -->
+    <div id="editUserModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Edit User</h2>
+            <form id="editUserForm">
+                <input type="hidden" id="editUsername">
+                <div class="form-group">
+                    <label for="editNames">Full Names</label>
+                    <input type="text" id="editNames" required>
+                </div>
+                <div class="form-group">
+                    <label for="editPhone">Phone Number</label>
+                    <input type="tel" id="editPhone" required>
+                </div>
+                <div class="form-group">
+                    <label for="editPassword">New Password (leave blank to keep current)</label>
+                    <input type="password" id="editPassword">
+                </div>
+                <button type="submit" class="btn">Update User</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
